@@ -11,7 +11,7 @@ block content
                         br
                         a(href="/plants/#{plant.name}") #{plant.name}
                 .row
-                    .col-xs-3.col-sm-2
+                    .col-xs-3.col-sm-3
                         br
                         form(method="POST", action="/", autocomplete="off")
                             input(type="hidden", name="_method", value="post")
@@ -20,10 +20,10 @@ block content
                             .row
                                 .col-xs-8
                                     textarea.form-control(name="content", style="font-size:11px;")
-                                .col
+                                .col-xs-4
                                     input.btn.btn-sm.btn-primary(type="submit", value="+")
                     for entry in plant.entries.reverse().slice(0, 3)
-                        .col-xs-3.col-sm-2
+                        .col-xs-3.col-sm-3
                             br
                             form(method="POST", action="/", autocomplete="off")
                                 input(type="hidden", name="_method", value="put")
@@ -34,7 +34,7 @@ block content
                                     .col-xs-8
                                         textarea.form-control(name="content", style="font-size:11px;")
                                             | #{entry.content}
-                                    .col
+                                    .col-xs-4
                                         input.btn.btn-sm.btn-warning(type="submit", value="#")
                 br
     br
