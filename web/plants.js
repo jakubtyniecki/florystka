@@ -1,28 +1,26 @@
 const express = require('express')
-const service = require('./service')
+const plantService = require('./plantService')
 
 const router = express.Router()
 
 router
     .route('/:plantName')
     .get(function(req, res) {
-        const plant = service.reading(param => {
-            return service.get_plant(param, req.params['plantName'])
+        const plant = plantService.reading(param => {
+            return plantService.get_plant(param, req.params['plantName'])
         })
 
         res.render('plants', { data: plant })
     })
 
-
-
 router
     .route('/:plantName')
     .post(function(req, res) {
-        const plants = service.writing(param => {
-            service.add_entry(param, req.body)
+        const plants = plantService.writing(param => {
+            plantService.add_entry(param, req.body)
         })
 
-        const plant = service.get_plant(plants, req.params['plantName'])
+        const plant = plantService.get_plant(plants, req.params['plantName'])
 
         res.render('plants', { data: plant })
     })
@@ -30,18 +28,18 @@ router
 router
     .route('/:plantName')
     .put(function(req, res) {
-        const plants = service.writing(param => {
+        const plants = plantService.writing(param => {
             switch(req.body.action) {
             case 'change-entry':
-                service.change_entry(param, req.body)
+                plantService.change_entry(param, req.body)
                 break;
             case 'change-plant':
-                service.change_plant(param, req.body)
+                plantService.change_plant(param, req.body)
                 break;
             } 
         })
 
-        const plant = service.get_plant(plants, req.params['plantName'])
+        const plant = plantService.get_plant(plants, req.params['plantName'])
 
         res.render('plants', { data: plant })
     })
@@ -49,8 +47,8 @@ router
 router
     .route('/:plantName')
     .delete(function(req, res) {
-        service.writing(param => {
-            service.remove_plant(param, req.body)
+        plantService.writing(param => {
+            plantService.remove_plant(param, req.body)
         })
 
         res.redirect('/')

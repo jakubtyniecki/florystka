@@ -2,10 +2,10 @@
   "name": "florystka",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore resources/",
-    "start": "node index.js"
+    "dev": "nodemon server.js --ignore resources/",
+    "start": "node server.js"
   },
   "author": "Jakub Tyniecki",
   "license": "ISC",

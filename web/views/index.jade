@@ -4,40 +4,47 @@ block content
     br
     br
     each plant in data
-        .row
-            .col-sm-1
-                a(href="/plants/#{plant.name}") #{plant.name}
-            .col-sm-2
-                form(method="POST", action="/", autocomplete="off")
-                    input(type="hidden", name="_method", value="post")
-                    input(type="hidden", name="action", value="add-entry")
-                    input(type="hidden", name="name", value="#{plant.name}")
-                    .row
-                        .col
-                            textarea.form-control(name="content", style="font-size:11px;")
-                        .col
-                            input.btn.btn-sm(type="submit", value="+")
-            for entry in plant.entries.reverse().slice(0, 3)
-                .col-sm-2
-                    form(method="POST", action="/", autocomplete="off")
-                        input(type="hidden", name="_method", value="put")
-                        input(type="hidden", name="action", value="change-entry")
-                        input(type="hidden", name="name", value="#{plant.name}")
-                        input(type="hidden", name="hash", value="#{entry.hash}")
-                        .row
-                            .col
-                                textarea.form-control(name="content", style="font-size:11px;")
-                                    | #{entry.content}
-                            .col
-                                input.btn.btn-sm(type="submit", value="#")
-        br
+        .row.row-striped
+            .col
+                .row 
+                    .col-xs-12
+                        br
+                        a(href="/plants/#{plant.name}") #{plant.name}
+                .row
+                    .col-xs-3.col-sm-2
+                        br
+                        form(method="POST", action="/", autocomplete="off")
+                            input(type="hidden", name="_method", value="post")
+                            input(type="hidden", name="action", value="add-entry")
+                            input(type="hidden", name="name", value="#{plant.name}")
+                            .row
+                                .col-xs-8
+                                    textarea.form-control(name="content", style="font-size:11px;")
+                                .col
+                                    input.btn.btn-sm.btn-primary(type="submit", value="+")
+                    for entry in plant.entries.reverse().slice(0, 3)
+                        .col-xs-3.col-sm-2
+                            br
+                            form(method="POST", action="/", autocomplete="off")
+                                input(type="hidden", name="_method", value="put")
+                                input(type="hidden", name="action", value="change-entry")
+                                input(type="hidden", name="name", value="#{plant.name}")
+                                input(type="hidden", name="hash", value="#{entry.hash}")
+                                .row
+                                    .col-xs-8
+                                        textarea.form-control(name="content", style="font-size:11px;")
+                                            | #{entry.content}
+                                    .col
+                                        input.btn.btn-sm.btn-warning(type="submit", value="#")
+                br
+    br
     .row 
-        .col-sm-2
+        .col-xs-12
             form(method="POST", action="/", autocomplete="off")
                 input(type="hidden", name="_method", value="post")
                 input(type="hidden", name="action", value="add-plant")
                 .row
-                    .col
+                    .col-xs-8
                         input.form-control(type="text", name="content", style="font-size:11px;", value="")
                     .col
-                        input.btn.btn-sm(type="submit", value="+")
+                        input.btn.btn-sm.btn-primary(type="submit", value="dodaj")

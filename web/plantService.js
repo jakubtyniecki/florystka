@@ -46,7 +46,7 @@ function change_plant(plants, data) {
 }
 
 function remove_plant(plants, data) {
-    return plants.filter(plant => plant.name != data.content)
+    plants = plants.filter(plant => plant.name != data.content)
 }
 
 function reading(callback) {
@@ -71,7 +71,7 @@ function writing(callback) {
     return plants
 }
 
-const service = {
+const plantService = {
     get_plant: get_plant,
     add_entry: add_entry,
     change_entry: change_entry,
@@ -81,4 +81,4 @@ const service = {
     writing: writing
 };
 
-module.exports = service
+module.exports = plantService

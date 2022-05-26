@@ -7,47 +7,49 @@ block content
     br
     br
     .row 
-    .col-sm-4
-        form(method="POST", action="/plants/#{data.name}", autocomplete="off")
-            input(type="hidden", name="_method", value="put")
-            input(type="hidden", name="action", value="change-plant")
-            input(type="hidden", name="name", value="#{data.name}")
-            .row
+        .col-xs-4.col-sm-4
+            form(method="POST", action="/plants/#{data.name}", autocomplete="off")
+                input(type="hidden", name="_method", value="put")
+                input(type="hidden", name="action", value="change-plant")
+                input(type="hidden", name="name", value="#{data.name}")
+                .row
+                    .col
+                        input.form-control(type="text", name="content", style="font-size:11px;", value="#{data.name}")
+                    .col
+                        input.btn.btn-sm.btn-warning(type="submit", value="#")
+            br      
+            .row.row-striped
                 .col
-                    input.form-control(type="text", name="content", style="font-size:11px;", value="#{data.name}")
-                .col
-                    input.btn.btn-sm(type="submit", value="#")
-        br      
-        .row
-            .col
-                form(method="POST", action="/plants/#{data.name}", autocomplete="off")
-                    input(type="hidden", name="_method", value="post")
-                    input(type="hidden", name="action", value="add-entry")
-                    input(type="hidden", name="name", value="#{data.name}")
-                    .row
-                        .col
-                            textarea.form-control(name="content", style="font-size:11px;")
-                        .col
-                            input.btn.btn-sm(type="submit", value="+")
-                br     
-        each entry in data.entries.reverse().slice(0, 10)
-            .row
-                .col
+                    br
                     form(method="POST", action="/plants/#{data.name}", autocomplete="off")
-                        input(type="hidden", name="_method", value="put")
-                        input(type="hidden", name="action", value="change-entry")
+                        input(type="hidden", name="_method", value="post")
+                        input(type="hidden", name="action", value="add-entry")
                         input(type="hidden", name="name", value="#{data.name}")
-                        input(type="hidden", name="hash", value="#{entry.hash}")
                         .row
                             .col
                                 textarea.form-control(name="content", style="font-size:11px;")
-                                    | #{entry.content}
                             .col
-                                input.btn.btn-sm(type="submit", value="#")
-                    br
-        br
-        form(method="POST", action="/plants/#{data.name}", autocomplete="off", onsubmit="return confirm('Czy na pewno chcesz usunąć tę pozycję ?')")
-            input(type="hidden", name="_method", value="delete")
-            input(type="hidden", name="action", value="remove-plant")
-            input(type="hidden", name="content", value="#{data.name}")
-            input.btn.btn-sm(type="submit", value="usuń")
+                                input.btn.btn-sm.btn-primary(type="submit", value="+")
+                    br     
+            each entry in data.entries.reverse().slice(0, 10)
+                .row.row-striped
+                    .col
+                        br
+                        form(method="POST", action="/plants/#{data.name}", autocomplete="off")
+                            input(type="hidden", name="_method", value="put")
+                            input(type="hidden", name="action", value="change-entry")
+                            input(type="hidden", name="name", value="#{data.name}")
+                            input(type="hidden", name="hash", value="#{entry.hash}")
+                            .row
+                                .col
+                                    textarea.form-control(name="content", style="font-size:11px;")
+                                        | #{entry.content}
+                                .col
+                                    input.btn.btn-sm.btn-warning(type="submit", value="#")
+                        br
+    br
+    form(method="POST", action="/plants/#{data.name}", autocomplete="off", onsubmit="return confirm('Czy na pewno chcesz usunąć tę pozycję ?')")
+        input(type="hidden", name="_method", value="delete")
+        input(type="hidden", name="action", value="remove-plant")
+        input(type="hidden", name="content", value="#{data.name}")
+        input.btn.btn-sm.btn-danger(type="submit", value="usuń")

@@ -28,8 +28,8 @@ app.use(methodOverride(function (req, res) {
 
 app.use(express.static('./web/public'));
 
-const site = require('./web/site')
-app.use('/', site);
+const index = require('./web/index')
+app.use('/', index);
 
 const plants = require('./web/plants')
 app.use('/plants', plants);

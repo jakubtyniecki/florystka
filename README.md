@@ -15,3 +15,11 @@ Future features set will include
 - multi house / profiles
 - assignments
 - sharing
+
+# dev
+
+npm run start
+
+# publish
+
+openode deploy
