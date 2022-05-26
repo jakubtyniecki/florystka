@@ -18,7 +18,7 @@ Future features set will include
 
 # dev
 
-npm run start
+npm run dev
 
 # publish
 
