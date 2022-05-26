@@ -19,11 +19,9 @@ router
         const plants = plantService.writing(param => {
             switch(req.body.action) {
                 case 'add-entry':
-                    plantService.add_entry(param, req.body)
-                    break;
+                    return plantService.add_entry(param, req.body)
                 case 'add-plant':
-                    plantService.add_plant(param, req.body)
-                    break;
+                    return plantService.add_plant(param, req.body)
             } 
         })
 
@@ -34,7 +32,7 @@ router
     .route('/')
     .put(function(req, res) {
         const plants = plantService.writing(param => {
-            plantService.change_entry(param, req.body)
+            return plantService.change_entry(param, req.body)
         })
 
         res.render('index', { data: plants })

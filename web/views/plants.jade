@@ -7,7 +7,7 @@ block content
     br
     br
     .row 
-        .col-xs-4.col-sm-4
+        .col-xs-8.col-sm-8
             form(method="POST", action="/plants/#{data.name}", autocomplete="off")
                 input(type="hidden", name="_method", value="put")
                 input(type="hidden", name="action", value="change-plant")
@@ -35,7 +35,7 @@ block content
                 .row.row-striped
                     .col
                         br
-                        form(method="POST", action="/plants/#{data.name}", autocomplete="off")
+                        form(method="POST", action="/plants/#{data.name}##{entry.hash}", autocomplete="off")
                             input(type="hidden", name="_method", value="put")
                             input(type="hidden", name="action", value="change-entry")
                             input(type="hidden", name="name", value="#{data.name}")

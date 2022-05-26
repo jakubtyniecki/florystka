@@ -10,6 +10,7 @@ function get_plant(plants, plant_name) {
         if (plant.name == plant_name) 
             return plant
     }
+    
     return null
   }
 
@@ -22,6 +23,8 @@ function add_entry(plants, data) {
             })
         }
     }
+
+    return plants
 }
 
 function change_entry(plants, data) {
@@ -35,6 +38,17 @@ function change_entry(plants, data) {
             }
         }
     }
+
+    return plants
+}
+
+function add_plant(plants, data) {
+    plants.push({
+        "name": data.content,
+        "entries": []
+    })
+
+    return plants
 }
 
 function change_plant(plants, data) {
@@ -43,10 +57,12 @@ function change_plant(plants, data) {
             plant.name = data.content
         }
     }
+
+    return plants
 }
 
 function remove_plant(plants, data) {
-    plants = plants.filter(plant => plant.name != data.content)
+    return plants.filter(plant => plant.name != data.content)
 }
 
 function reading(callback) {
@@ -62,7 +78,7 @@ function writing(callback) {
 
     let plants = JSON.parse(read_plants_str)
 
-    callback(plants)
+    plants = callback(plants)
 
     let write_plants_str = JSON.stringify(plants, null, 2);
 
@@ -75,6 +91,7 @@ const plantService = {
     get_plant: get_plant,
     add_entry: add_entry,
     change_entry: change_entry,
+    add_plant: add_plant,
     change_plant: change_plant,
     remove_plant: remove_plant,
     reading: reading,
